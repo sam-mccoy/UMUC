@@ -3,4 +3,355 @@ Static file for Theme changes
 Theme name: My SPA Theme
 Version: 1.0
 Template: Howdy
+Category colors
+ Blue - #1173CC
+ Red - #AA1D30
+Green - #A0911E
+Navy - #021F3F
+Header
+Blue - #01224F
+Yellow - #FFB81E
+Top lettering
+Grey - #989898
 */
+body {
+    color:#1f1f1f;
+    font-family: 'Open Sans', sans-serif;
+    font-weight:400;
+}
+
+body,
+.header-navigation {
+    background:#fff;
+}
+
+a {
+    color:  #01224F;
+}
+
+a:hover, a:focus {
+    color: #1173CC;
+    text-decoration: none;
+}
+
+.text-info,
+a.text-info:hover {
+    color: #1173CC;
+}
+
+.login .order-cloud-image {
+    /*background: url('css/images/orderCloud.jpg') center center fixed;*/
+    background:#fff;
+}
+
+.login .order-cloud .form-signin {
+    background: rgba(1, 34, 79, 0.85) none repeat scroll 0 0;
+    border-radius: 6px;
+    box-shadow: 0 0 0 2px rgba(17, 115, 204, 0.85);
+    margin: 2em auto;
+    max-width: 26em;
+    padding: 1em 1em 2em;
+}
+
+.login .view-form-icon label {
+    color:#FFF;
+}
+
+.order-cloud .form-signin .btn-success {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 15px;
+    text-shadow: 0 -1px 0 #999999;
+    transition: all 150ms ease 0s;
+}
+
+/*logo*/
+.logo {
+    padding:20px;
+    text-align:center;
+
+}
+
+.logo img {
+    width:175px;
+    height:auto;
+}
+
+@media (max-width:767px) {
+
+    .logo img {
+        margin:0 auto;
+    }
+}
+/*logo*/
+
+.product-search {
+    padding:30px;
+}
+
+.view-form-icon .btn i {
+    color:#FFF;
+}
+
+/*.product-search .form-control {
+    background-color: #1f1f1f;
+    border: 1px solid #5cb85c;
+    color:#FFF;
+}
+.product-search .form-control::-moz-placeholder {
+    color: #FFF;
+    opacity: 1;
+}
+.product-search .btn-default.disabled,
+.product-search .btn-default[disabled],
+.product-search fieldset[disabled] .btn-default,
+.product-search .btn-default.disabled:hover,
+.product-search .btn-default[disabled]:hover,
+.product-search fieldset[disabled] .btn-default:hover,
+.product-search .btn-default.disabled:focus,
+.product-search .btn-default[disabled]:focus,
+.product-search fieldset[disabled] .btn-default:focus,
+.product-search .btn-default.disabled:active,
+.product-search .btn-default[disabled]:active,
+.product-search fieldset[disabled] .btn-default:active,
+.product-search .btn-default.disabled.active,
+.product-search .btn-default.active[disabled],
+.product-search fieldset[disabled] .btn-default.active {
+    background-color: #1f1f1f;
+    border-color: #5cb85c;
+}
+.product-search .btn.disabled,
+.product-search .btn[disabled],
+.product-search fieldset[disabled] .btn {
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
+}*/
+
+.form-control {
+    background-color: #01224F;
+    border: 1px solid #5cb85c;
+    color:#FFF;
+}
+
+.form-control::-moz-placeholder {
+    color: #FFF;
+    opacity: 1;
+}
+
+.form-control:focus {
+    border: 1px solid #5cb85c;
+}
+
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default.active[disabled],
+fieldset[disabled] .btn-default.active {
+    background-color: #01224F;
+    border-color: #5cb85c;
+}
+
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.btn-default {
+    background-color: #01224F;
+    border-color: #5cb85c;
+    color: #FFF;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+    color: #FFF;
+    background-color: #000;
+    border-color: #5cb85c;
+}
+
+.navbar .container .navbar-nav.pull-left li.fadeInLeft a i,
+.navbar .container-view .navbar-nav.pull-left li.fadeInLeft a i {
+    color: #5cb85c;
+}
+
+.navbar-inverse {
+    background-color: #01224F;
+    border-color:#01224F;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #5cb85c;
+    color: #FFF;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color: #5cb85c;
+    background-color: transparent;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-mega .dropdown-menu > li > a:hover,
+.dropdown-mega .dropdown-menu > li > a:focus {
+    color: #FFF;
+    background-color: #5cb85c;
+}
+
+.dropdown-menu,
+.dropdown-mega .dropdown-menu {
+    background-color: #01224F;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+}
+
+.dropdown-menu > li > a,
+.dropdown-mega .dropdown-menu > li > a {
+    color: #FFF;
+}
+
+.navbar .container .navbar-nav.pull-right li a,
+.navbar .container-view .navbar-nav.pull-right li a {
+    padding: 5px;
+}
+
+.badge {
+    background-color: #5cb85c;
+}
+
+.carousel .img-responsive,
+.carousel .thumbnail > img,
+.carousel .thumbnail a > img,
+.carousel .carousel-inner > .item > img,
+.carousel .carousel-inner > .item > a > img {
+    /*max-width: 50%;*/
+    margin:0 auto;
+}
+
+.app-loading-indicator-cell {
+    background-color:#000;
+}
+
+.app-loading-indicator-cell i {
+    color: #5cb85c;
+}
+
+.app-loading-indicator-cell p {
+    background-color: transparent;
+    color: #5cb85c;
+}
+
+.panel-nav li,
+.panel-nav ul li ul li {
+    border:transparent;
+}
+
+.panel.panel-no-panels,
+.panel.panel-no-panels .well {
+    background-color:#000;
+}
+
+/*H-WHAT*/
+.panel.panel-no-panels .panel-table {
+    background-color:rgba(255, 255, 255, 0.2222222);
+    color:#FFF;
+}
+
+.panel.panel-no-panels li .well {
+    background-color:#FFF;
+}
+
+.panel.panel-no-panels .panel-category-list {
+    padding:0;
+    margin:0;
+}
+
+.panel.panel-no-panels .panel-heading {
+    border-top: 0 none;
+    padding: 0;
+}
+
+.panel.panel-no-panels .panel-heading .panel-title {
+    /*font-size: 14px;
+    letter-spacing: 0.08em;
+    padding: 25px 15px;
+    text-align: center;
+    text-transform: uppercase;*/
+    color:#FFF;
+}
+
+.panel-default > .panel-heading,
+.panel-search > .panel-heading,
+.panel-category-list ul li a .empty > .panel-heading,
+.panel-order > .panel-heading {
+    background-color: #01224F;
+    border-color: #5cb85c;
+    color:#FFF;
+}
+
+.panel.panel-no-panels .panel-footer {
+    background-color: transparent;
+    border-top: 0;
+    padding: 10px 15px;
+}
+
+.panel-category-list ul li a img {
+    max-height:300px;
+}
+
+.panel-category-list ul li .well.image-bg.dark a {
+    background-color: rgba(31, 31, 31, 0.6);
+}
+
+.panel-category-list ul li .well.image-bg.dark a:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.panel-product-list.no-panels .well {
+    border: 1px solid #01224F;
+    background-color:#000;
+}
+
+.panel-product-list.no-panels .well .thumbnail img {
+    max-height:100%;
+}
+
+.panel-lineitem .quantity-total {
+    background-color: #01224F;
+    border-color: #5cb85c;
+    color:#FFF;
+}
+
+.panel-lineitem a.line-item-link:hover {
+    background-color: #01224F;
+    border: 1px solid #5cb85c;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td,
+.table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: transparent;
+}
