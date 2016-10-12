@@ -10,6 +10,11 @@ four51.app.controller('NavCtrl', ['$location', '$route', '$scope', '$451', 'User
             }
         };
 
+        $scope.Redirect = function(){
+            User.logout();
+            $window.location.href = "https://sso.umuc.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=https://umucauth.tela.com/shibboleth&shire=https://umucauth.tela.com/Shibboleth.sso/SAML2/POST";
+        };
+
         // http://stackoverflow.com/questions/12592472/how-to-highlight-a-current-menu-item-in-angularjs
         $scope.isActive = function(path) {
             var cur_path = $location.path().replace('/', '');

@@ -1,42 +1,56 @@
+<style ng-if="continue">
+    .checkout-buttons ul {
+        width: 100%;
+        position:relative;
+        top:10px;
+        margin-bottom:20px;
+    }
+    .checkout-buttons ul li {
+        width: 33%;
+        float:left;
+        padding:0 5px;
+    }
+
+    @media(max-width:767px) {
+        .checkout-buttons ul li {
+            width:100%;
+            padding:5px 0;
+        }
+    }
+
+    .checkout-buttons ul li button {
+        width: 100%;
+        border-radius:0;
+    }
+</style>
 <ul>
-    <style ng-if="continue">
-        .navbar-fixed-bottom ul li:nth-of-type(1) {
-            width: 20%;
-        }
-        .navbar-fixed-bottom ul li:nth-of-type(2) {
-            width: 20%;
-        }
-        .navbar-fixed-bottom ul li:nth-of-type(3) {
-            width: 20%;
-        }
-        .navbar-fixed-bottom ul li:last-child {
-            width: 40%;
-        }
-    </style>
-    <li ng-if="continue">
+    <!--<li ng-if="continue">
         <button type="button" class="btn btn-info" redirect="catalog">
             <small class="hidden-xs">{{'Continue Shopping' | r | xlat}}</small>
             <small class="visible-xs">{{'Shop' | r | xlat}}</small>
         </button>
-    </li>
+    </li>-->
     <li>
         <button class="btn btn-danger" ng-click="currentOrder.Status == 'AwaitingApproval' ? cancelEdit() : cancelOrder()">
-            <small ng-show="currentOrder.Status != 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Order' | r) | xlat}}</small>
-            <small ng-show="currentOrder.Status == 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Edit' | r) | xlat}}</small>
+            <small class="hidden-xs" ng-show="currentOrder.Status != 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Order' | r) | xlat}}</small>
+            <small class="hidden-xs" ng-show="currentOrder.Status == 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Edit' | r) | xlat}}</small>
+            <small class="visible-xs">{{'Cancel' | r | xlat}}</small>
         </button>
     </li>
     <li>
         <button class="btn btn-primary"  ng-click="saveChanges()">
             <loadingindicator ng-show="displayLoadingIndicator" />
-            {{('Save' | r) + ' ' + ('Order' | r) | xlat}}
+            <small class="hidden-xs">{{('Save' | r) + ' ' + ('Order' | r) | xlat}}</small>
+            <small class="visible-xs">{{'Save' | r | xlat}}</small>
         </button>
     </li>
     <li>
         <button class="btn"
-                ng-class="{'btn-warning': cart_shipping.$invalid || cart_order.$invalid || cart_billing.$invalid || submitClicked, 'btn-success': !cart_shipping.$invalid && !cart_order.$invalid && !cart_billing.$invalid || !submitClicked }"
-                ng-click="submitOrder()" ng-disabled="cart_shipping.$invalid || cart_order.$invalid || cart_billing.$invalid || submitClicked">
-            <i ng-show="cart_shipping.$invalid || cart_order.$invalid || cart_billing.$invalid || submitClicked" class="fa fa-warning"></i>
-            <span>{{('Submit' | r) + ' ' + ('Order' | r) | xlat}}</span>
+                ng-class="{'btn-warning': cart_shipping.$invalid || cart_order.$invalid || cart_billing.$invalid, 'btn-success': !cart_shipping.$invalid && !cart_order.$invalid && !cart_billing.$invalid }"
+                ng-click="submitOrder()" ng-disabled="cart_shipping.$invalid || cart_order.$invalid || cart_billing.$invalid">
+            <i ng-show="cart_shipping.$invalid || cart_order.$invalid || cart_billing.$invalid" class="fa fa-warning"></i>
+            <small class="hidden-xs">{{('Submit' | r) + ' ' + ('Order' | r) | xlat}}</small>
+            <small class="visible-xs">{{'Submit' | r | xlat}}</small>
         </button>
     </li>
 </ul>

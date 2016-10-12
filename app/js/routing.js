@@ -38,7 +38,8 @@ four51.app.config(['$routeProvider', '$locationProvider', function($routeProvide
         when('/cart/:productInteropID/:lineItemIndex', { templateUrl: concatProductView, controller: 'LineItemEditCtrl'}).
         when('/cart/:productInteropID/:orderID/:lineItemIndex', { templateUrl: concatProductView, controller: 'LineItemEditCtrl'}).
         when('/cart/:id', { templateUrl: 'partials/cartView.html', controller: 'CartViewCtrl' }).
-        when('/login', { templateUrl: 'partials/controls/login.html', controller: 'LoginCtrl' }).
+        //when('/login', { templateUrl: 'partials/controls/login.html', controller: 'LoginCtrl' }).
+        when('/login', { templateUrl: 'partials/loginView.html', controller: 'UserEditCtrl' }).
         when('/search', { templateUrl: 'partials/searchView.html', controller: 'ProductSearchCtrl' }).
         when('/search/:searchTerm', { templateUrl: 'partials/searchView.html', controller: 'ProductSearchCtrl' }).
         when('/security', { templateUrl: 'partials/Security/security.html', controller: 'SecurityCtrl' }).

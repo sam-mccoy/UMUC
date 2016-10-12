@@ -1,18 +1,29 @@
-<ul>
-    <style ng-if="continue">
-        .navbar-fixed-bottom ul li:nth-of-type(1) {
-            width: 25%;
+<style ng-if="continue">
+    .cart-buttons ul {
+        width: 100%;
+    }
+    .cart-buttons ul li {
+        width: 20%;
+        float:left;
+        padding:0 5px;
+    }
+    .cart-buttons ul.authenticated li {
+        width:25%;
+    }
+
+    @media(max-width:767px) {
+        .cart-buttons ul li,
+        .cart-buttons ul.authenticated li {
+            width:100%;
+            padding:5px 0;
         }
-        .navbar-fixed-bottom ul li:nth-of-type(2) {
-            width: 20%;
-        }
-        .navbar-fixed-bottom ul li:nth-of-type(3) {
-            width: 20%;
-        }
-        .navbar-fixed-bottom ul li:last-child {
-            width: 35%;
-        }
-    </style>
+    }
+    .cart-buttons ul li button {
+        width: 100%;
+        border-radius:0;
+    }
+</style>
+<ul ng-class="{'': user.Type == 'TempCustomer', 'authenticated': user.Type != 'TempCustomer' }">
     <li ng-if="continue">
         <button type="button" class="btn btn-info" redirect="catalog">
             <small class="hidden-xs">{{'Continue Shopping' | r | xlat}}</small>
@@ -21,20 +32,36 @@
     </li>
     <li>
         <button type="button" class="btn btn-danger" ng-click="currentOrder.Status == 'AwaitingApproval' ? cancelEdit() : cancelOrder()">
-            <small ng-if="currentOrder.Status != 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Order' | r) | xlat}}</small>
-            <small ng-if="currentOrder.Status == 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Edit' | r) | xlat}}</small>
+            <small class="hidden-xs" ng-if="currentOrder.Status != 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Order' | r) | xlat}}</small>
+            <small class="hidden-xs" ng-if="currentOrder.Status == 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Edit' | r) | xlat}}</small>
+            <small class="visible-xs">{{'Cancel' | r | xlat}}</small>
         </button>
     </li>
     <li>
         <button type="submit" class="btn btn-primary" ng-click="saveChanges()">
             <loadingindicator  ng-show="displayLoadingIndicator" />
-            <small>{{('Save' | r) + ' ' + ('Order' | r) | xlat}}</small>
+            <small class="hidden-xs">{{('Save' | r) + ' ' + ('Order' | r) | xlat}}</small>
+            <small class="visible-xs">{{'Save' | r | xlat}}</small>
         </button>
     </li>
-    <li>
+    <li ng-show="user.Type != 'TempCustomer'">
         <button type="button" class="btn" ng-class="{'btn-warning': cart.$invalid, 'btn-success': !cart.$invalid }" ng-click="checkOut()" ng-disabled="cart.$invalid || kitValidation">
             <i ng-show="cart.$invalid || kitValidation" class="fa fa-warning"></i>
-            <span>{{'Check Out' | r | xlat}} {{window.outerWidth}}</span>
+            <span>{{'Check Out' | r | xlat}}</span>
+        </button>
+    </li>
+    <li ng-show="user.Type == 'TempCustomer'">
+        <button class="btn" ng-class="{'btn-warning': cart.$invalid, 'btn-success': !cart.$invalid }" redirect="login" ng-disabled="cart.$invalid || kitValidation">
+            <i ng-show="cart.$invalid || kitValidation" class="fa fa-warning"></i>
+            <small class="hidden-xs">{{'Login / Check Out' | r | xlat}}</small>
+            <small class="visible-xs">{{'Login' | r | xlat}}</small>
+        </button>
+    </li>
+    <li ng-show="user.Type == 'TempCustomer'">
+        <button class="btn" ng-class="{'btn-warning': cart.$invalid, 'btn-success': !cart.$invalid }" redirect="admin" ng-disabled="cart.$invalid || kitValidation">
+            <i ng-show="cart.$invalid || kitValidation" class="fa fa-warning"></i>
+            <small class="hidden-xs">{{'Login / Register' | r | xlat}}</small>
+            <small class="visible-xs">{{'Register' | r | xlat}}</small>
         </button>
     </li>
 </ul>
