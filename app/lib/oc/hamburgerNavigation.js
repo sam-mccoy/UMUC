@@ -2,62 +2,88 @@ angular.module('OrderCloud-HamburgerNavigation', []);
 
 angular.module('OrderCloud-HamburgerNavigation')
     .directive('hamburgernavigation', hamburgernavigation)
-    //.controller('HamburgerNavigationCtrl', HamburgerNavigationCtrl)
+    .directive('hamburgernavcategorytree', hamburgernavcategorytree)
+    .directive('hamburgernavnode', hamburgernavnode)
+    .directive('categorytree', categorytree)
+    .directive('node', node)
+    .controller('HamburgerNavigationCtrl', HamburgerNavigationCtrl)
 ;
 
-//hamburgernavigation.$inject = ['$scope'];
 function hamburgernavigation() {
     var directive = {
         restrict: 'E',
-        /* scope: {
-         user: "="
-         },*/
         template: template,
-        controller: 'NavCtrl'
+        controller: 'HamburgerNavigationCtrl'
     };
     return directive;
 
     function template() {
         return [
             '<style>',
-            '.navbar.navbar-hamburger { min-height:40px; max-height:40px; background-color: #011e41; padding-bottom:10px; }',
-            '.navbar-hamburger .col-collapse { background-color:#fff; color:#fff; }',
-            '.navbar-hamburger i { font-size: 1.8em; left: 10px; position: relative; top: 10px; }',
-            '.navbar-hamburger a, ul.burgers li a { color:#ffffff; text-decoration:none; }',
-            '.navbar-hamburger a:hover { color:#fff; text-decoration:none; }',
-            'ul.burgers { background-color: #011e41; margin-bottom:20px; }',
-            'ul.burgers li a { background-color: #011e41;  padding: 0.5em 0.75em; width: 100%; }',
-            'ul.burgers li.active a { background-color: #ffb81d; color: #01214f; text-decoration:none;}',
-            'ul.burgers li a:hover { background-color:#0f4a78; color: #fff; text-decoration:none;}',
-            'ul.burgers li a:focus { background-color: #ffb81d; color: #01214f; text-decoration:none;}',
-            'ul.burgers li a i { min-width:20px; }',
-            'ul.burgers li ul li a i { min-width:25px; }',
-            '.navbar-account { min-height:40px; max-height:40px; background-color: #011e41; padding-bottom:10px; }',
-            '.navbar-help { min-height:40px; max-height:40px; background-color: #011e41; padding-bottom:10px; }',
-            '.navbar-faculty { min-height:40px; max-height:40px; background-color: #011e41; padding-bottom:10px; }',
-            'ul.my-account li a, ul.help li a, ul.faculty li a { font-size:95%; text-indent:5px; }',
+            //color changes start
+            '.navbar-hamburger .main-toggle i {color:#fff;}',
+            'ul.burgers {margin:0; width:100%;}',
+            //color changes end
+            'accountnavigation {display:none !important;}',
+            '.navbar-hamburger .main-toggle i {font-size:1.8em; left:10px; position:relative; top:10px;}',
+            '.navbar.navbar-hamburger, .navbar.navbar-categories, .navbar.navbar-account, .navbar.navbar-all {min-height:40px; max-height:40px; padding-bottom:10px;}',
+            'ul.burgers li {width:100%;}',
+            'ul.burgers li a {padding: 0.5em 0.75em; width:100%; height:auto; line-height:auto;}',
+            'ul.burgers li a:hover {text-decoration:none;}',
+            'ul.burgers li a i {font-size:1.2em; min-width:25px;}',
+            'ul.categories, ul.account, ul.subcategories {position:relative; top:0; z-index:1010;}',
+            'ul.categories li, ul.account li, ul-subcategories li {width:100%;}',
+            'ul.categories li a, ul.account li a, ul-subcategories li a {padding:0.5em 0.75em; width:100%;}',
+            'ul.subcategories li ul li a {padding:0.5em 1.25em; width:100%;}',
+            'ul.categories li a:hover, ul.account li a:hover, ul.subcategories li a:hover {text-decoration:none;}',
+            'ul.categories li ul li a, ul.account li a, ul.subcategories li a {color:#fff; font-size:95%; text-indent:5px;}',
+            'ul.burgers .badge {margin-left:3px;}',
             '</style>',
-            '<header class="header navbar navbar-inner hidden-md hidden-lg">',
-            '<nav class="navbar navbar-hamburger" role="navigation">',
-            '<div ng-init="isCollapsed = true">',
-            '<a ng-click="isCollapsed = !isCollapsed" ng-class="{\'active\': !isCollapsed, \'\': isCollapsed}">',
-            '<span><i class="fa fa-th-list"></i></span>',
+            '<header class="header navbar navbar-inner hidden-sm hidden-md hidden-lg">',
+            '<nav class="navbar navbar-default navbar-hamburger" role="navigation">',
+            '<div>',
+            '<a class="main-toggle" ng-click="isCollapsed = !isCollapsed" ng-class="{\'active\': !isCollapsed, \'\': isCollapsed}">',
+            '<i class="fa fa-th-list" ng-show="isCollapsed"></i>',
+            '<i class="fa fa-th" ng-show="!isCollapsed"></i>',
             '</a>',
             '</div>',
             '</nav>',
+            '<div class="container">',
             '<div class="col-xs-12 col-collapse" collapse="isCollapsed">',
-            '<ul class="burgers">',
+            '<ul class="navbar-nav navbar-default burgers">',
+            //home
             '<li ng-class="{\'active\': isActive([\'catalog\'])}">',
-            '<a href="catalog">',
+            '<a ng-click="retarget(\'catalog\')">',
             '<i class="fa fa-home"></i>',
             '<span>{{\'Home\' | r | xlat}}</span>',
             '</a>',
             '</li>',
+
+            //categories
+            '<li id="categories">',
+            '<nav class="navbar-default navbar-categories" role="navigation">',
+            '<div>',
+            '<a ng-click="isCollapsedCategory = !isCollapsedCategory" ng-class="{\'active\': !isCollapsedCategory, \'\': isCollapsedCategory}">',
+            '<i class="fa fa-folder" ng-show="isCollapsedCategory"></i>',
+            '<i class="fa fa-folder-open" ng-show="!isCollapsedCategory"></i>',
+            '<span>Categories</span>',
+            '</a>',
+            '</div>',
+            '</nav>',
+            '<div class="col-xs-12 col-collapse" collapse="isCollapsedCategory">',
+            '<ul class="navbar-nav categories">',
+            //subcategories
+            '<li id="subcategories">',
+            '<hamburgernavcategorytree tree=\'tree\' current=\'currentCategory\' />',
+            '</li>',
+            '</ul>',
+            '</div>',
+            '</li>',
             //account
             '<li id="account">',
-            '<nav class="navbar-account" role="navigation">',
-            '<div ng-init="isCollapsedAccount = true">',
-            '<a ng-click="isCollapsedAccount = !isCollapsedAccount" ng-class="{\'active\': !isCollapsedAccount, \'\': isCollapsedAccount}">',
+            '<nav class="navbar-account" role="navigation" ng-show="user.Type == \'Customer\'">',
+            '<div>',
+            '<a ng-click="isCollapsedAccount = !isCollapsedAccount">',
             '<i class="fa fa-cog" ng-show="isCollapsedAccount"></i>',
             '<i class="fa fa-cogs" ng-show="!isCollapsedAccount"></i>',
             '<span>{{\'My Account\' | r | xlat}}</span>',
@@ -65,84 +91,53 @@ function hamburgernavigation() {
             '</div>',
             '</nav>',
             '<div class="col-xs-12 col-collapse" collapse="isCollapsedAccount">',
-            '<ul class="my-account">',
-            '<li ng-show="user.Type != \'Customer\'">',
-            '<a href="login">',
-            '<i class="fa fa-sign-in"></i>',
-            '<span>{{\'Login\' | r | xlat}}</span>',
-            '</a>',
-            '</li>',
-            '<li ng-show="user.Type != \'Customer\'">',
-            '<a href="admin">',
-            '<i class="fa fa-user-plus"></i>',
-            '<span>{{\'New User\' | r | xlat}}</span>',
-            '</a>',
-            '</li>',
+            '<ul class="navbar-nav account">',
             '<li ng-show="user.Type == \'Customer\' && user.Permissions.contains(\'ViewSelfAdmin\')">',
-            '<a href="admin">',
+            '<a ng-click="retarget(\'admin\')">',
             '<i class="fa fa-user"></i>',
-            '<span>{{\'User Information\' | r | xlat}}</span>',
+            '{{\'User Information\' | r | xlat}}',
             '</a>',
             '</li>',
-            '<li ng-if="user.Type == \'Customer\'" ng-class="{\'active\': isActive([\'orders\'])}">',
-            '<a href="order">',
-            '<i class="fa fa-clipboard"></i>',
-            '<span>{{\'Orders\' | r | xlat}}</span>',
-            '</a>',
-            '</li>',
-            '<li ng-show="user.Type == \'Customer\' && (user.Permissions.contains(\'CreateShipToAddress\') || user.Permissions.contains(\'CreateBillToAddress\'))" class="addresses">',
-            '<a href="addresses">',
+            '<li ng-show="user.Type == \'Customer\' && (user.Permissions.contains(\'CreateShipToAddress\') || user.Permissions.contains(\'CreateBillToAddress\'))">',
+            '<a ng-click="retarget(\'addresses\')">',
             '<i class="fa fa-book"></i>',
             '{{\'Addresses\' | r | xlat}}',
             '</a>',
             '</li>',
-            '<li ng-show="user.Type == \'Customer\' && user.Permissions.contains(\'ViewMessaging\')" class="messages">',
-            '<a href="message">',
-            '<i class="fa fa-comment"></i>',
-            '{{\'Messages\' | r | xlat}}',
+            '<li ng-show="user.Type == \'Customer\'">',
+            '<a ng-click="retarget(\'order\')">',
+            '<i class="fa fa-clipboard"></i>',
+            '{{\'Orders\' | r | xlat}}',
             '</a>',
             '</li>',
-            '<li class="favorites" ng-show="user.Type == \'Customer\'">',
-            '<a href="favoriteorders">',
+            '<li ng-show="user.Type == \'Customer\'">',
+            '<a ng-click="retarget(\'favoriteorders\')">',
             '<i class="fa fa-star"></i>',
             '{{\'Favorites\' | r | xlat}}',
             '</a>',
             '</li>',
-            '<li class="report" ng-if="user.Type == \'Customer\' && user.Permissions.contains(\'AdvancedReporting\')" ng-class="{\'active\': isActive(\'reports\')}">',
-            '<a href="reports">',
+            '<li ng-show="user.Type == \'Customer\' && user.Permissions.contains(\'AdvancedReporting\')">',
+            '<a ng-click="retarget(\'reports\')">',
             '<i class="fa fa-bar-chart-o"></i>',
             '{{\'Reports\' | r | xlat}}',
             '</a>',
             '</li>',
-            '<li>',
-            '<a href="#" neworder ng-if="user.Permissions.contains(\'MultipleShoppingCart\') && currentOrder" class="neworder" ng-click="newOrderLoadingIndicator = true;startNewOrder()">',
-            '<i class="fa fa-plus"></i>',
-            '{{\'Start\' | r | xlat}} {{\'New\' | r | xlat}} {{\'Order\' | r | xlat}}',
+            '<li ng-show="user.Type == \'Customer\' && user.Permissions.contains(\'ViewMessaging\')">',
+            '<a ng-click="retarget(\'message\')">',
+            '<i class="fa fa-comment"></i>',
+            '{{\'Messages\' | r | xlat}}',
             '</a>',
             '</li>',
-            '<li ng-if="user.Type ==\'Customer\' && user.Groups[0].Name != \'FacultyStaff\'">',
-            '<a href="#" class="451_btn_logout" ng-click="Logout()">',
-            '<i class="fa fa-sign-out"></i>',
-            '<span>{{\'Logout\' | r | xlat}}</span>',
+            '<li>',
+            '<a href="#" neworder ng-show="user.Type == \'Customer\' && user.Permissions.contains(\'MultipleShoppingCart\') && currentOrder" ng-click="newOrderLoadingIndicator = true;startNewOrder()">',
+            '<i class="fa fa-plus"></i>',
+            '{{\'Start\' | r | xlat}} {{\'New\' | r | xlat}} {{\'Order\' | r | xlat}}',
             '</a>',
             '</li>',
             '</ul>',
             '</div>',
             '</li>',
-            //faculty anon
-            '<li class="faculty-login" ng-show="(user.Type == \'TempCustomer\' || user.Type != \'TempCustomer\' && user.Groups[0].Name != \'FacultyStaff\')">',
-            '<a href="https://sso.umuc.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=https://umucauth.tela.com/shibboleth&shire=https://umucauth.tela.com/Shibboleth.sso/SAML2/POST">',
-            '<i class="fa fa-lock"></i>',
-            '<span>{{\'Faculty/Staff Login \' | r | xlat}}</span>',
-            '</a>',
-            '</li>',
-            //faculty authenticated
-            '<li class="faculty-login" ng-show="user.Groups[0].Name == \'FacultyStaff\'">',
-            '<a href="#" class="451_btn_logout" ng-click="Logout()">',
-            '<i class="fa fa-unlock"></i>',
-            '<span>{{\'Faculty/Staff Logout \' | r | xlat}}</span>',
-            '</a>',
-            '</li>',
+
             //help
             '<li id="help">',
             '<nav class="navbar-help" role="navigation">',
@@ -155,7 +150,7 @@ function hamburgernavigation() {
             '</div>',
             '</nav>',
             '<div class="col-xs-12 col-collapse" collapse="isCollapsedHelp">',
-            '<ul class="help">',
+            '<ul class="subcategories">',
             '<li>',
             '<faqmodal></faqmodal>',
             '</li>',
@@ -166,26 +161,186 @@ function hamburgernavigation() {
             '</div>',
             '</li>',
 
-
             //search
-            '<li id="search" ng-class="{\'active\': isActive([\'search\'])}">',
-            '<a href="search">',
+            '<li ng-class="{\'active\': isActive([\'search\'])}">',
+            '<a ng-click="retarget(\'search\')">',
             '<i class="fa fa-search"></i>',
             '<span>{{\'Search\' | r | xlat}}</span>',
             '</a>',
             '</li>',
-
-
             //cart
             '<li class="cart" ng-class="{\'active\': isActive([\'cart\', \'checkout\'])}">',
-            '<a class="cart" href="cart">',
+            '<a class="cart" ng-click="retarget(\'cart\')">',
             '<i class="fa fa-shopping-cart"></i>',
             '<span>{{\'Cart\' | r | xlat}}</span>',
+            '<span ng-bind="cartCount" class="badge"></span>',
+            '</a>',
+            '</li>',
+
+            //logout
+            '<li class="logout" ng-if="user.Type ==\'Customer\' && user.Groups[0].Name != \'Staff\'">',
+            '<a href="#" class="451_btn_logout" ng-click="Logout()">',
+            '<i class="fa fa-sign-out"></i>',
+            '<span>{{\'Logout\' | r | xlat}}</span>',
+            '</a>',
+            '</li>',
+            //login
+            /*'<li ng-if="user.Type ==\'Customer\' && user.Groups[0].Name != \'Staff\'">',
+            '<a ng-click="retarget(\'admin\')">',
+            '<i class="fa fa-sign-in"></i>',
+            '<span>{{\'Login\' | r | xlat}}</span>',
+            '</a>',
+            '</li>',*/
+
+            //faculty anon
+            '<li class="faculty-login" ng-show="user.Type == \'TempCustomer\'">',
+            '<a href="https://sso.umuc.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=https://umucauth.tela.com/shibboleth&shire=https://umucauth.tela.com/Shibboleth.sso/SAML2/POST">',
+            '<i class="fa fa-lock"></i>',
+            '<span>{{\'Faculty/Staff Login \' | r | xlat}}</span>',
+            '</a>',
+            '</li>',
+            //faculty authenticated
+            '<li class="faculty-login" ng-show="user.Type == \'Customer\' && user.Groups[0].Name == \'Staff\'">',
+            '<a href="#" class="451_btn_logout" ng-click="Logout()">',
+            '<i class="fa fa-unlock"></i>',
+            '<span>{{\'Faculty/Staff Logout \' | r | xlat}}</span>',
             '</a>',
             '</li>',
             '</ul>',
             '</div>',
+            '</div>',
             '</header>'
         ].join('');
     }
+}
+
+function hamburgernavcategorytree() {
+    var directive = {
+        restrict: 'E',
+        replace: true,
+        template: template,
+        controller: 'HamburgerNavigationCtrl',
+        scope: {
+            tree: '=',
+            current: '='
+        }
+    };
+    return directive;
+
+    function template() {
+        return [
+            '<ul class="subcategories">',
+            '<hamburgernavnode class="nav" ng-repeat="node in tree" node="node" current="current"></hamburgernavnode>',
+            '</ul>'
+        ].join('');
+    }
+}
+
+function hamburgernavnode() {
+    var directive = {
+        restrict: 'E',
+        replace: true,
+        template: template,
+        controller: 'HamburgerNavigationCtrl',
+        scope: {
+            node: '=',
+            current: '='
+        }
+    };
+    return directive;
+
+    function template() {
+        return [
+            '<li ng-class="{\'active\': current.InteropID == node.InteropID}">',
+            '<nav class="navbar-default navbar-{{node.InteropID}}" role="navigation">',
+            '<div ng-init="isCollapsedSubCategory = true">',
+            '<a ng-show="node.SubCategories" ng-click="isCollapsedSubCategory = !isCollapsedSubCategory">',
+            '<i class="fa fa-plus-square" ng-show="isCollapsedSubCategory"></i>',
+            '<i class="fa fa-minus-square" ng-show="!isCollapsedSubCategory"></i>',
+            '<span>{{node.Name}}</span>',
+            '</a>',
+            '<a ng-hide="node.SubCategories" ng-click="retarget(\'catalog/{{node.InteropID}}\')" ng-bind-html="node.Name"></a>',
+            '</div>',
+            '</nav>',
+            '<div class="col-xs-12 col-collapse" collapse="isCollapsedSubCategory">',
+            '<ul class="navbar-nav">',
+            '<categorytree tree=\'node.SubCategories\' current=\'current\'/>',
+            '</ul>',
+            '</div>',
+            '</li>'
+        ].join('');
+    }
+}
+
+function categorytree() {
+    var directive = {
+        restrict: 'E',
+        replace: true,
+        template: template,
+        controller: 'HamburgerNavigationCtrl',
+        scope: {
+            tree: '=',
+            current: '='
+        }
+    };
+    return directive;
+
+    function template() {
+        return [
+            '<ul>',
+            '<node class="nav" ng-repeat="node in tree" node="node" current="current" ></node>',
+            '</ul>'
+        ].join('');
+    }
+}
+
+node.$inject = ['$compile'];
+function node($compile) {
+    var directive = {
+        restrict: 'E',
+        replace: true,
+        template: template,
+        controller: 'HamburgerNavigationCtrl',
+        scope: {
+            node: '=',
+            current: '='
+        },
+        link: function(scope, element) {
+            if (angular.isArray(scope.node.SubCategories)) {
+                element.append("<categorytree tree='node.SubCategories' current='current'/>");
+                $compile(element.contents())(scope);
+            }
+        }
+    };
+    return directive;
+
+    function template() {
+        return [
+            '<li class="451_cat_item" ng-class="{\'active\': current.InteropID == node.InteropID}">',
+            '<a ng-click="retarget(\'catalog/{{node.InteropID}}\')" ng-bind-html="node.Name"></a>',
+            '</li>'
+        ].join('');
+    }
+}
+
+HamburgerNavigationCtrl.$inject = ['$location', '$scope', '$rootScope'];
+function HamburgerNavigationCtrl($location, $scope, $rootScope) {
+
+    $scope.isCollapsed = true;
+    $scope.isCollapsedCategory = true;
+    $scope.isCollapsedSubCategory = true;
+    $scope.isCollapsedAccount = true;
+
+    $scope.retarget = function(url) {
+        $scope.target = url;
+        $location.path($scope.target);
+        $rootScope.$broadcast('clicked');
+    };
+
+    $scope.$on('clicked', function() {
+        $scope.isCollapsedCategory = true;
+        $scope.isCollapsedSubCategory = true;
+        $scope.isCollapsed = true;
+        $scope.isCollapsedAccount = true;
+    });
 }

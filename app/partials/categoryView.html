@@ -1,7 +1,25 @@
-<section>
+<section class="category-view">
     <div class="row">
-        <categorylistview></categorylistview>
-        <!--<loadingindicator ng-show="productLoadingIndicator" title="{{'Please wait while we fetch all products' | r | xlat}}"/>-->
-        <productlistview></productlistview>
+        <aside class="col-md-3 visible-md visible-lg">
+            <div class="panel panel-default panel-nav">
+                <nav class="nav 451qa_sidenav panel-body">
+                    <ul>
+                        <categorytree tree='tree' current='currentCategory' />
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="col-md-9">
+
+            <div class="featured-items-wrapper" ng-show="isActive('catalog')">
+                <featureditemsapparel></featureditemsapparel>
+                <featureditemsdrinkware></featureditemsdrinkware>
+                <featureditemsbag></featureditemsbag>
+                <featureditemsaccessories></featureditemsaccessories>
+            </div>
+
+            <categorylistview ng-hide="isActive('catalog')"></categorylistview>
+            <productlistview></productlistview>
+        </div>
     </div>
 </section>

@@ -1,8 +1,11 @@
 /*
 Static file for Theme changes
 Theme name: proforma800.four51ordercloud.com/UMUC/
-Last Updated: 12/1/15
-Developers: Jen, Four51
+Last Updated: 10/26/16
+Developers:
+
+Coverdale Group
+Jen Rasmussen
 
 COLORS:
 dk blue  [ umuc.edu #01214f rgb(1, 33, 79) ]
@@ -83,8 +86,10 @@ accountnavigation {
     display:none;
 }
 
-.navbar-default ul {
-    text-transform:uppercase;
+@media(min-width:768px) {
+    .navbar-default ul {
+        text-transform: uppercase;
+    }
 }
 
 .navbar .container .navbar-nav.pull-left li ul li,
@@ -330,6 +335,55 @@ ul.dropdown-menu a span:hover,
     padding: 15px !important;
 }
 
+.category-view {
+    margin-top:25px;
+}
+
+.category-view aside .panel.panel-nav.panel-default {
+    border:0;
+}
+
+.category-view aside .panel.panel-nav.panel-default .panel-body {
+    padding:0 !important;
+}
+
+.panel-nav ul li {
+    background: #01214F;
+}
+
+.panel-nav ul li.active {
+    background-color: #0f4a78;
+}
+
+.panel-nav ul li a {
+    padding: 10px 0;
+    color:#fff;
+}
+
+@media(min-width:768px) {
+    .panel-nav ul li a {
+        text-transform:uppercase;
+    }
+}
+
+.panel-nav ul li ul li {
+    background:#e6e6e8;
+}
+
+.panel-nav ul li ul li.active {
+    background-color: #fff;
+}
+
+.panel-nav ul li ul li a {
+    color:#000;
+}
+
+.panel-nav ul li a:hover,
+.panel-nav ul li a:active,
+.panel-nav ul li a:focus {
+    text-decoration: none;
+}
+
 .panel-category-list ul li .well {
     margin: 0;
     min-height: 195px;
@@ -483,4 +537,44 @@ fixedfooter {
 .fixed-footer-bottom a:focus {
     color: #daa81e;
     text-decoration: underline;
+}
+
+.featured-items-wrapper .panel-default .panel-title,
+.category-view .panel-default .panel-title {
+    text-align:left;
+    color:#fff;
+}
+
+.featured-items-wrapper .panel-default.apparel .panel-title,
+.category-view .panel-default.apparel .panel-title {
+    background-color:#1173CC;
+}
+
+.featured-items-wrapper .panel-default.drinkware .panel-title {
+    background-color:#AA1D30;
+}
+
+.featured-items-wrapper .panel-default.bags .panel-title {
+    background-color:#A0911E;
+}
+
+.featured-items-wrapper .panel-default.accessories .panel-title {
+    background-color:#021F3F;
+}
+
+.featured-items-wrapper .panel-default .panel-footer {
+    background-color:#fff;
+    text-transform:uppercase;
+    font-size:90%;
+}
+
+.panel-category-list .well {
+    border-color: #fff;
+}
+
+.panel-category-list ul li a {
+    padding: 0.5em;
+}
+.panel-category-list ul li .well {
+    min-height: 100%;
 }

@@ -1,8 +1,9 @@
 <loadingindicator ng-show="categoryLoadingIndicator" title="{{'Please wait while we fetch all categories' | r | xlat}}" />
-<div class="panel panel-default" ng-show="currentCategory.SubCategories.length">
+<div class="panel panel-default" ng-class="{apparel: currentCategory.Name == 'Apparel'}" ng-show="currentCategory.SubCategories.length">
     <div class="panel-heading">
         <h3 class="panel-title">
-            {{'Categories' | r | xlat}}
+            <!--{{'Categories' | r | xlat}}-->
+            {{currentCategory.Name}}
         </h3>
     </div>
     <div class="well" ng-show="productCount > settings.pageSize">
@@ -10,23 +11,21 @@
                     items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
     </div>
     <div class="panel-category-list">
-        <nav class="nav 451_lbl_subcatlist">
-            <ul>
-                <li class="col-xs-12 col-sm-6 col-md-4 col-lg-2" ng-repeat="c in currentCategory.SubCategories">
-                    <div class="well">
-                        <a ng-href="catalog/{{c.InteropID}}">
-                            <figure ng-show="c.Image.URL">
-                                <img class="img-responsive" ng-src="{{c.Image.URL}}"/>
-                            </figure>
-                            <div class="empty" ng-show="!c.Image.URL">
-                                <span class="fa empty"><i class="fa fa-camera"></i></span>
-                            </div>
-                            <!--<h5 ng-bind-html="c.Name" />-->
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+        <ul>
+            <li class="col-xs-12 col-sm-6 col-md-4 col-lg-2" ng-repeat="c in currentCategory.SubCategories">
+                <div class="well">
+                    <a ng-href="catalog/{{c.InteropID}}">
+                        <figure ng-show="c.Image.URL">
+                            <img class="img-responsive" ng-src="{{c.Image.URL}}"/>
+                        </figure>
+                        <div class="empty" ng-show="!c.Image.URL">
+                            <span class="fa empty"><i class="fa fa-camera"></i></span>
+                        </div>
+                        <!--<h5 ng-bind-html="c.Name" />-->
+                    </a>
+                </div>
+            </li>
+        </ul>
     </div>
     <div class="well" ng-show="productCount > settings.pageSize">
         <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
