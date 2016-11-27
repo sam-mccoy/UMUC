@@ -46,7 +46,7 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 * Custom User field must be prefaced with `featuredItemPants` and then the # i.e. featuredItemPants1
 * uses `blue-header` class
 * Show relies on apparel category interop id not changing i.e. `umuc-apparel`
-* View more link relies on category interop id not changing i.e `umuc-pants'
+* View more link relies on category interop id not changing i.e `umuc-pants`
 
 **Instructions**
 * Follow instructions under Custom Solutions Library - Featured Items
@@ -61,7 +61,7 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 * Custom User field must be prefaced with `featuredItemShirt` and then the # i.e. featuredItemShirt1
 * uses `red-header` class 
 * Show relies on apparel category interop id not changing i.e. `umuc-apparel`
-* View more link relies on category interop id not changing i.e `umuc-shirts'
+* View more link relies on category interop id not changing i.e `umuc-shirts`
 
 **Instructions**
 * Follow instructions under Custom Solutions Library - Featured Items
@@ -76,7 +76,7 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 * Custom User field must be prefaced with `featuredItemJacket` and then the # i.e. featuredItemJacket1
 * uses `gold-header` class 
 * Show relies on apparel category interop id not changing i.e. `umuc-apparel`
-* View more link relies on category interop id not changing i.e `umuc-jacket'
+* View more link relies on category interop id not changing i.e `umuc-jacket`
 
 **Instructions**
 * Follow instructions under Custom Solutions Library - Featured Items
@@ -92,7 +92,7 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 * Custom User field must be prefaced with `featuredItemPolo` and then the # i.e. featuredItemPolo1
 * uses `navy-header` class 
 * Show relies on apparel category interop id not changing i.e. `umuc-apparel`
-* View more link relies on category interop id not changing i.e `umuc-polo'
+* View more link relies on category interop id not changing i.e `umuc-polo`
 
 **Instructions**
 * Follow instructions under Custom Solutions Library - Featured Items
@@ -156,8 +156,8 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 `lib/oc/contactModal.js`
 
 **Instructions**
-* Follow instructions under Custom Solutions Library - Security Modal
-`https://github.com/Four51Repositories/CustomSolutions/tree/master/Security%20Modal`
+* Follow instructions under Custom Solutions Library - Content Modal
+`https://github.com/Four51Repositories/CustomSolutions/tree/master/Content%20Modal`
 
 ========
 
@@ -165,8 +165,8 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 `lib/oc/faqModal.js`
 
 **Instructions**
-* Follow instructions under Custom Solutions Library - Security Modal
-`https://github.com/Four51Repositories/CustomSolutions/tree/master/Security%20Modal`
+* Follow instructions under Custom Solutions Library - Content Modal
+`https://github.com/Four51Repositories/CustomSolutions/tree/master/Content%20Modal`
 
 ========
 
