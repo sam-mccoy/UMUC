@@ -1,17 +1,17 @@
-angular.module('OrderCloud-Carousel', ['ngAnimate']);
+angular.module('OrderCloud-CarouselJackets', ['ngAnimate']);
 
-angular.module('OrderCloud-Carousel')
-    .directive('customcarousel', customcarousel)
-    .controller('customCarouselCtrl', customCarouselCtrl)
-    .filter('intervalFilter', intervalFilter)
-    .filter('carouselFilter', carouselFilter)
+angular.module('OrderCloud-CarouselJackets')
+    .directive('customcarouseljackets', customcarouseljackets)
+    .controller('customCarouselJacketsCtrl', customCarouselJacketsCtrl)
+    .filter('intervalJacketsFilter', intervalJacketsFilter)
+    .filter('carouselJacketsFilter', carouselJacketsFilter)
 ;
 
-function customcarousel() {
+function customcarouseljackets() {
     var directive =  {
         restrict: 'E',
         template: template,
-        controller: customCarouselCtrl
+        controller: customCarouselJacketsCtrl
     };
     return directive;
 
@@ -37,20 +37,20 @@ function customcarousel() {
     }
 }
 
-customCarouselCtrl.$inject = ['$scope', '$animate', '$filter'];
-function customCarouselCtrl($scope, $animate, $filter) {
+customCarouselJacketsCtrl.$inject = ['$scope', '$animate', '$filter'];
+function customCarouselJacketsCtrl($scope, $animate, $filter) {
     $animate.enabled(false);
     $scope.slides = [];
     $scope.$watch('user.CustomFields', function(newVal){
         if (!newVal) return;
         $scope.slides = []; //reset the slide counter
-        $scope.myInterval = ($filter('intervalFilter')($scope.user.CustomFields, 'interval') * 1000) || 5000;
-        $scope.slides = $scope.slides.concat($filter('carouselFilter')($scope.user.CustomFields, 'UMUCCarouselHomeImage'));
+        $scope.myInterval = ($filter('intervalJacketsFilter')($scope.user.CustomFields, 'interval') * 1000) || 5000;
+        $scope.slides = $scope.slides.concat($filter('carouselJacketsFilter')($scope.user.CustomFields, 'UMUCCarouselJacketsImage'));
         //$scope.slides[0].active = true; /*causing the slider not to show for FacultyStaff group*/
     });
 }
 
-function intervalFilter() {
+function intervalJacketsFilter() {
     return function (fields, name) {
         var result = null;
         angular.forEach(fields, function(field) {
@@ -61,7 +61,7 @@ function intervalFilter() {
     }
 }
 
-function carouselFilter() {
+function carouselJacketsFilter() {
     return function (fields, name) {
         var result = [];
         angular.forEach(fields, function(field) {

@@ -27,7 +27,8 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 **_IMPORTANT_**
 * You must be logged in to your GitHub account to access the following URLs.
 
-###### Bootstrap Carousel
+
+###### Bootstrap Carousel (Home)
 `lib/oc/carousel.js`
 
 **Instructions**
@@ -35,11 +36,76 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 `https://github.com/Four51Repositories/CustomSolutions/tree/master/Bootstrap%20Carousel`
 
 **Specific naming convention**
-* 
+* Custom User field must be prefaced with `UMUCCarouselHomeImage` and then the # i.e. UMUCCarouselHomeImage1
 
 ========
 
-###### Featured Items Sweatshirts & Pants (customization)
+###### Bootstrap Carousel Pants (customization)
+`lib/oc/carouselPants.js`
+
+**Instructions**
+* Follow instructions under Custom Solutions Library - Bootstrap Carousel
+`https://github.com/Four51Repositories/CustomSolutions/tree/master/Bootstrap%20Carousel`
+
+**Specific naming convention**
+* Custom User field must be prefaced with `UMUCCarouselPantsImage` and then the # i.e. UMUCCarouselPantsImage1
+* Show relies on apparel category interop id not changing i.e. `umuc-pants`
+
+========
+
+###### Bootstrap Carousel Shirts (customization)
+`lib/oc/carouselShirts.js`
+
+**Instructions**
+* Follow instructions under Custom Solutions Library - Bootstrap Carousel
+`https://github.com/Four51Repositories/CustomSolutions/tree/master/Bootstrap%20Carousel`
+
+**Specific naming convention**
+* Custom User field must be prefaced with `UMUCCarouselShirtsImage` and then the # i.e. UMUCCarouselShirtsImage1
+* Show relies on apparel category interop id not changing i.e. `umuc-shirts`
+
+========
+
+###### Bootstrap Carousel Jackets (customization)
+`lib/oc/carouselJackets.js`
+
+**Instructions**
+* Follow instructions under Custom Solutions Library - Bootstrap Carousel
+`https://github.com/Four51Repositories/CustomSolutions/tree/master/Bootstrap%20Carousel`
+
+**Specific naming convention**
+* Custom User field must be prefaced with `UMUCCarouselJacketsImage` and then the # i.e. UMUCCarouselJacketsImage1
+* Show relies on apparel category interop id not changing i.e. `umuc-jacket`
+
+========
+
+###### Bootstrap Carousel Polos (customization)
+`lib/oc/carouselPolos.js`
+
+**Instructions**
+* Follow instructions under Custom Solutions Library - Bootstrap Carousel
+`https://github.com/Four51Repositories/CustomSolutions/tree/master/Bootstrap%20Carousel`
+
+**Specific naming convention**
+* Custom User field must be prefaced with `UMUCCarouselPolosImage` and then the # i.e. UMUCCarouselPolosImage1
+* Show relies on apparel category interop id not changing i.e. `umuc-polo`
+
+========
+
+###### Bootstrap Carousel Hats (customization)
+`lib/oc/carouselHats.js`
+
+**Instructions**
+* Follow instructions under Custom Solutions Library - Bootstrap Carousel
+`https://github.com/Four51Repositories/CustomSolutions/tree/master/Bootstrap%20Carousel`
+
+**Specific naming convention**
+* Custom User field must be prefaced with `UMUCCarouselHatsImage` and then the # i.e. UMUCCarouselHatsImage1
+* Show relies on apparel category interop id not changing i.e. `umuc-hats`
+
+========
+
+###### Featured Items Sweatshirts and Pants (customization)
 `lib/oc/featuredItemsPants.js`
 
 **Specific instructions**

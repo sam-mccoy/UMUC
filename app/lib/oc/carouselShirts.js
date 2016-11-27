@@ -1,17 +1,17 @@
-angular.module('OrderCloud-Carousel', ['ngAnimate']);
+angular.module('OrderCloud-CarouselShirts', ['ngAnimate']);
 
-angular.module('OrderCloud-Carousel')
-    .directive('customcarousel', customcarousel)
-    .controller('customCarouselCtrl', customCarouselCtrl)
-    .filter('intervalFilter', intervalFilter)
-    .filter('carouselFilter', carouselFilter)
+angular.module('OrderCloud-CarouselShirts')
+    .directive('customcarouselshirts', customcarouselshirts)
+    .controller('customCarouselShirtsCtrl', customCarouselShirtsCtrl)
+    .filter('intervalShirtsFilter', intervalShirtsFilter)
+    .filter('carouselShirtsFilter', carouselShirtsFilter)
 ;
 
-function customcarousel() {
+function customcarouselshirts() {
     var directive =  {
         restrict: 'E',
         template: template,
-        controller: customCarouselCtrl
+        controller: customCarouselShirtsCtrl
     };
     return directive;
 
@@ -37,20 +37,20 @@ function customcarousel() {
     }
 }
 
-customCarouselCtrl.$inject = ['$scope', '$animate', '$filter'];
-function customCarouselCtrl($scope, $animate, $filter) {
+customCarouselShirtsCtrl.$inject = ['$scope', '$animate', '$filter'];
+function customCarouselShirtsCtrl($scope, $animate, $filter) {
     $animate.enabled(false);
     $scope.slides = [];
     $scope.$watch('user.CustomFields', function(newVal){
         if (!newVal) return;
         $scope.slides = []; //reset the slide counter
-        $scope.myInterval = ($filter('intervalFilter')($scope.user.CustomFields, 'interval') * 1000) || 5000;
-        $scope.slides = $scope.slides.concat($filter('carouselFilter')($scope.user.CustomFields, 'UMUCCarouselHomeImage'));
+        $scope.myInterval = ($filter('intervalShirtsFilter')($scope.user.CustomFields, 'interval') * 1000) || 5000;
+        $scope.slides = $scope.slides.concat($filter('carouselShirtsFilter')($scope.user.CustomFields, 'UMUCCarouselShirtsImage'));
         //$scope.slides[0].active = true; /*causing the slider not to show for FacultyStaff group*/
     });
 }
 
-function intervalFilter() {
+function intervalShirtsFilter() {
     return function (fields, name) {
         var result = null;
         angular.forEach(fields, function(field) {
@@ -61,7 +61,7 @@ function intervalFilter() {
     }
 }
 
-function carouselFilter() {
+function carouselShirtsFilter() {
     return function (fields, name) {
         var result = [];
         angular.forEach(fields, function(field) {

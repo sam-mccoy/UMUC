@@ -1,17 +1,17 @@
-angular.module('OrderCloud-Carousel', ['ngAnimate']);
+angular.module('OrderCloud-CarouselPolos', ['ngAnimate']);
 
-angular.module('OrderCloud-Carousel')
-    .directive('customcarousel', customcarousel)
-    .controller('customCarouselCtrl', customCarouselCtrl)
-    .filter('intervalFilter', intervalFilter)
-    .filter('carouselFilter', carouselFilter)
+angular.module('OrderCloud-CarouselPolos')
+    .directive('customcarouselpolos', customcarouselpolos)
+    .controller('customCarouselPolosCtrl', customCarouselPolosCtrl)
+    .filter('intervalPolosFilter', intervalPolosFilter)
+    .filter('carouselPolosFilter', carouselPolosFilter)
 ;
 
-function customcarousel() {
+function customcarouselpolos() {
     var directive =  {
         restrict: 'E',
         template: template,
-        controller: customCarouselCtrl
+        controller: customCarouselPolosCtrl
     };
     return directive;
 
@@ -37,20 +37,20 @@ function customcarousel() {
     }
 }
 
-customCarouselCtrl.$inject = ['$scope', '$animate', '$filter'];
-function customCarouselCtrl($scope, $animate, $filter) {
+customCarouselPolosCtrl.$inject = ['$scope', '$animate', '$filter'];
+function customCarouselPolosCtrl($scope, $animate, $filter) {
     $animate.enabled(false);
     $scope.slides = [];
     $scope.$watch('user.CustomFields', function(newVal){
         if (!newVal) return;
         $scope.slides = []; //reset the slide counter
-        $scope.myInterval = ($filter('intervalFilter')($scope.user.CustomFields, 'interval') * 1000) || 5000;
-        $scope.slides = $scope.slides.concat($filter('carouselFilter')($scope.user.CustomFields, 'UMUCCarouselHomeImage'));
+        $scope.myInterval = ($filter('intervalPolosFilter')($scope.user.CustomFields, 'interval') * 1000) || 5000;
+        $scope.slides = $scope.slides.concat($filter('carouselPolosFilter')($scope.user.CustomFields, 'UMUCCarouselPolosImage'));
         //$scope.slides[0].active = true; /*causing the slider not to show for FacultyStaff group*/
     });
 }
 
-function intervalFilter() {
+function intervalPolosFilter() {
     return function (fields, name) {
         var result = null;
         angular.forEach(fields, function(field) {
@@ -61,7 +61,7 @@ function intervalFilter() {
     }
 }
 
-function carouselFilter() {
+function carouselPolosFilter() {
     return function (fields, name) {
         var result = [];
         angular.forEach(fields, function(field) {
