@@ -11,15 +11,18 @@
         </aside>
         <div class="col-md-9">
 
-            <div class="featured-items-wrapper" ng-show="isActive('catalog')">
-                <featureditemsapparel></featureditemsapparel>
-                <featureditemsdrinkware></featureditemsdrinkware>
-                <featureditemsbags></featureditemsbags>
-                <featureditemsaccessories></featureditemsaccessories>
+            <div class="featured-items-wrapper" ng-show="isActive('catalog/umuc-apparel')">
+                <featureditemspants></featureditemspants>
+                <featureditemsshirts></featureditemsshirts>
+                <featureditemsjackets></featureditemsjackets>
+                <featureditemspolos></featureditemspolos>
+                <featureditemshats></featureditemshats>
             </div>
 
-            <categorylistview ng-hide="isActive('catalog')"></categorylistview>
-            <productlistview></productlistview>
+
+            <!--<categorylistview ng-hide="isActive('catalog')"></categorylistview>-->
+            <categorylistview ng-show="isActive('catalog')"></categorylistview>
+            <productlistview ng-hide="isActive('catalog/umuc-apparel')"></productlistview>
         </div>
     </div>
 </section>

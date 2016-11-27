@@ -1,16 +1,16 @@
-angular.module('OrderCloud-FeaturedItemsApparel', []);
+angular.module('OrderCloud-FeaturedItemsJackets', []);
 
-angular.module('OrderCloud-FeaturedItemsApparel')
-    .directive('featureditemsapparel', featureditemsapparel)
-    .controller('FeaturedItemsApparelCtrl', FeaturedItemsApparelCtrl)
-    .filter('featuredItemApparelFilter', featuredItemApparelFilter)
+angular.module('OrderCloud-FeaturedItemsJackets')
+    .directive('featureditemsjackets', featureditemsjackets)
+    .controller('FeaturedItemsJacketsCtrl', FeaturedItemsJacketsCtrl)
+    .filter('featuredItemJacketsFilter', featuredItemJacketsFilter)
 ;
 
-function featureditemsapparel() {
+function featureditemsjackets() {
     var directive =  {
         restrict: 'E',
         template: template,
-        controller: FeaturedItemsApparelCtrl
+        controller: FeaturedItemsJacketsCtrl
     };
     return directive;
 
@@ -24,13 +24,13 @@ function featureditemsapparel() {
             '.featured-items li a:hover { text-decoration:none }',
             '@media (max-width: 768px) { .featured-items li { width:100%; float:none; text-align:center; padding:15px 0; } } ',
             '</style>',
-            '<div class="panel panel-default apparel">',
+            '<div class="panel panel-default gold-header">',
             '<div class="panel-heading">',
-            '<h3 class="panel-title">Apparel</h3>',
+            '<h3 class="panel-title">Jackets</h3>',
             '</div>',
             '<div class="panel-body">',
             '<ul class="featured-items" ng-class="{\'active\': isActive(\'catalog\')}">',
-            '<li ng-class="col-xs-3" ng-repeat="featureditem in featureditemsApparel">',
+            '<li ng-class="col-xs-3" ng-repeat="featureditem in featureditemsJackets">',
             '<a class="text-center" href="{{featureditem.link}}"><img class="img-responsive" ng-src="{{featureditem.image}}" />',
             '<br /><span>{{featureditem.name}}</span>',
             '</a>',
@@ -38,22 +38,22 @@ function featureditemsapparel() {
             '</ul>',
             '</div>',
             '<div class="panel-footer text-right">',
-            '<a href="catalog/umuc-apparel">View More <i class="fa fa-chevron-right"></i></a>',
+            '<a href="catalog/umuc-jacket">View More <i class="fa fa-chevron-right"></i></a>',
             '</div>',
             '</div>'
         ].join('');
     }
 }
 
-FeaturedItemsApparelCtrl.$inject = ['$scope', '$filter', '$location'];
-function FeaturedItemsApparelCtrl($scope, $filter, $location) {
+FeaturedItemsJacketsCtrl.$inject = ['$scope', '$filter', '$location'];
+function FeaturedItemsJacketsCtrl($scope, $filter, $location) {
 
-    $scope.featureditemsApparel = [];
+    $scope.featureditemsJackets = [];
     $scope.$watch('user.CustomFields', function(newVal){
         if (!newVal) return;
-        if ($scope.featureditemsApparel) {
-            $scope.featureditemsApparel = []; //reset the counter
-            $scope.featureditemsApparel = $scope.featureditemsApparel.concat($filter('featuredItemApparelFilter')($scope.user.CustomFields, 'featuredItemApparel'));
+        if ($scope.featureditemsJackets) {
+            $scope.featureditemsJackets = []; //reset the counter
+            $scope.featureditemsJackets = $scope.featureditemsJackets.concat($filter('featuredItemJacketsFilter')($scope.user.CustomFields, 'featuredItemJacket'));
         }
     });
 
@@ -76,7 +76,7 @@ function FeaturedItemsApparelCtrl($scope, $filter, $location) {
     };
 }
 
-function featuredItemApparelFilter() {
+function featuredItemJacketsFilter() {
     return function (fields, name) {
         var result = [];
         angular.forEach(fields, function(field) {

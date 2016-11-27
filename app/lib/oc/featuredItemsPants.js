@@ -1,16 +1,16 @@
-angular.module('OrderCloud-FeaturedItemsDrinkware', []);
+angular.module('OrderCloud-FeaturedItemsPants', []);
 
-angular.module('OrderCloud-FeaturedItemsDrinkware')
-    .directive('featureditemsdrinkware', featureditemsdrinkware)
-    .controller('FeaturedItemsDrinkwareCtrl', FeaturedItemsDrinkwareCtrl)
-    .filter('featuredItemDrinkwareFilter', featuredItemDrinkwareFilter)
+angular.module('OrderCloud-FeaturedItemsPants')
+    .directive('featureditemspants', featureditemspants)
+    .controller('FeaturedItemsPantsCtrl', FeaturedItemsPantsCtrl)
+    .filter('featuredItemPantsFilter', featuredItemPantsFilter)
 ;
 
-function featureditemsdrinkware() {
+function featureditemspants() {
     var directive =  {
         restrict: 'E',
         template: template,
-        controller: FeaturedItemsDrinkwareCtrl
+        controller: FeaturedItemsPantsCtrl
     };
     return directive;
 
@@ -24,13 +24,13 @@ function featureditemsdrinkware() {
             '.featured-items li a:hover { text-decoration:none }',
             '@media (max-width: 768px) { .featured-items li { width:100%; float:none; text-align:center; padding:15px 0; } } ',
             '</style>',
-            '<div class="panel panel-default drinkware">',
+            '<div class="panel panel-default blue-header">',
             '<div class="panel-heading">',
-            '<h3 class="panel-title">Drinkware</h3>',
+            '<h3 class="panel-title">Sweatshirts and Pants</h3>',
             '</div>',
             '<div class="panel-body">',
             '<ul class="featured-items" ng-class="{\'active\': isActive(\'catalog\')}">',
-            '<li ng-class="col-xs-3" ng-repeat="featureditem in featureditemsDrinkware">',
+            '<li ng-class="col-xs-3" ng-repeat="featureditem in featureditemsPants">',
             '<a class="text-center" href="{{featureditem.link}}"><img class="img-responsive" ng-src="{{featureditem.image}}" />',
             '<br /><span>{{featureditem.name}}</span>',
             '</a>',
@@ -38,22 +38,22 @@ function featureditemsdrinkware() {
             '</ul>',
             '</div>',
             '<div class="panel-footer text-right">',
-            '<a href="catalog/drinkware">View More <i class="fa fa-chevron-right"></i></a>',
+            '<a href="catalog/umuc-pants">View More <i class="fa fa-chevron-right"></i></a>',
             '</div>',
             '</div>'
         ].join('');
     }
 }
 
-FeaturedItemsDrinkwareCtrl.$inject = ['$scope', '$filter', '$location'];
-function FeaturedItemsDrinkwareCtrl($scope, $filter, $location) {
+FeaturedItemsPantsCtrl.$inject = ['$scope', '$filter', '$location'];
+function FeaturedItemsPantsCtrl($scope, $filter, $location) {
 
-    $scope.featureditemsDrinkware = [];
+    $scope.featureditemsPants = [];
     $scope.$watch('user.CustomFields', function(newVal){
         if (!newVal) return;
-        if ($scope.featureditemsDrinkware) {
-            $scope.featureditemsDrinkware = []; //reset the counter
-            $scope.featureditemsDrinkware = $scope.featureditemsDrinkware.concat($filter('featuredItemDrinkwareFilter')($scope.user.CustomFields, 'featuredItemDrinkware'));
+        if ($scope.featureditemsPants) {
+            $scope.featureditemsPants = []; //reset the counter
+            $scope.featureditemsPants = $scope.featureditemsPants.concat($filter('featuredItemPantsFilter')($scope.user.CustomFields, 'featuredItemPants'));
         }
     });
 
@@ -76,7 +76,7 @@ function FeaturedItemsDrinkwareCtrl($scope, $filter, $location) {
     };
 }
 
-function featuredItemDrinkwareFilter() {
+function featuredItemPantsFilter() {
     return function (fields, name) {
         var result = [];
         angular.forEach(fields, function(field) {

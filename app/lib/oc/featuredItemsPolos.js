@@ -1,16 +1,16 @@
-angular.module('OrderCloud-FeaturedItemsBags', []);
+angular.module('OrderCloud-FeaturedItemsPolos', []);
 
-angular.module('OrderCloud-FeaturedItemsBags')
-    .directive('featureditemsbags', featureditemsbags)
-    .controller('FeaturedItemsBagsCtrl', FeaturedItemsBagsCtrl)
-    .filter('featuredItemBagsFilter', featuredItemBagsFilter)
+angular.module('OrderCloud-FeaturedItemsPolos')
+    .directive('featureditemspolos', featureditemspolos)
+    .controller('FeaturedItemsPolosCtrl', FeaturedItemsPolosCtrl)
+    .filter('featuredItemPolosFilter', featuredItemPolosFilter)
 ;
 
-function featureditemsbags() {
+function featureditemspolos() {
     var directive =  {
         restrict: 'E',
         template: template,
-        controller: FeaturedItemsBagsCtrl
+        controller: FeaturedItemsPolosCtrl
     };
     return directive;
 
@@ -24,13 +24,13 @@ function featureditemsbags() {
             '.featured-items li a:hover { text-decoration:none }',
             '@media (max-width: 768px) { .featured-items li { width:100%; float:none; text-align:center; padding:15px 0; } } ',
             '</style>',
-            '<div class="panel panel-default bags">',
+            '<div class="panel panel-default navy-header">',
             '<div class="panel-heading">',
-            '<h3 class="panel-title">Bags</h3>',
+            '<h3 class="panel-title">Polos</h3>',
             '</div>',
             '<div class="panel-body">',
             '<ul class="featured-items" ng-class="{\'active\': isActive(\'catalog\')}">',
-            '<li ng-class="col-xs-3" ng-repeat="featureditem in featureditemsBags">',
+            '<li ng-class="col-xs-3" ng-repeat="featureditem in featureditemsPolos">',
             '<a class="text-center" href="{{featureditem.link}}"><img class="img-responsive" ng-src="{{featureditem.image}}" />',
             '<br /><span>{{featureditem.name}}</span>',
             '</a>',
@@ -38,22 +38,22 @@ function featureditemsbags() {
             '</ul>',
             '</div>',
             '<div class="panel-footer text-right">',
-            '<a href="catalog/umuc-bags">View More <i class="fa fa-chevron-right"></i></a>',
+            '<a href="catalog/umuc-polo">View More <i class="fa fa-chevron-right"></i></a>',
             '</div>',
             '</div>'
         ].join('');
     }
 }
 
-FeaturedItemsBagsCtrl.$inject = ['$scope', '$filter', '$location'];
-function FeaturedItemsBagsCtrl($scope, $filter, $location) {
+FeaturedItemsPolosCtrl.$inject = ['$scope', '$filter', '$location'];
+function FeaturedItemsPolosCtrl($scope, $filter, $location) {
 
-    $scope.featureditemsBags = [];
+    $scope.featureditemsPolos = [];
     $scope.$watch('user.CustomFields', function(newVal){
         if (!newVal) return;
-        if ($scope.featureditemsBags) {
-            $scope.featureditemsBags = []; //reset the counter
-            $scope.featureditemsBags = $scope.featureditemsBags.concat($filter('featuredItemBagsFilter')($scope.user.CustomFields, 'featuredItemBags'));
+        if ($scope.featureditemsPolos) {
+            $scope.featureditemsPolos = []; //reset the counter
+            $scope.featureditemsPolos = $scope.featureditemsPolos.concat($filter('featuredItemPolosFilter')($scope.user.CustomFields, 'featuredItemPolo'));
         }
     });
 
@@ -76,7 +76,7 @@ function FeaturedItemsBagsCtrl($scope, $filter, $location) {
     };
 }
 
-function featuredItemBagsFilter() {
+function featuredItemPolosFilter() {
     return function (fields, name) {
         var result = [];
         angular.forEach(fields, function(field) {

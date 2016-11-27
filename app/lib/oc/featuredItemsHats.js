@@ -1,16 +1,16 @@
-angular.module('OrderCloud-FeaturedItemsAccessories', []);
+angular.module('OrderCloud-FeaturedItemsHats', []);
 
-angular.module('OrderCloud-FeaturedItemsAccessories')
-    .directive('featureditemsaccessories', featureditemsaccessories)
-    .controller('FeaturedItemsAccessoriesCtrl', FeaturedItemsAccessoriesCtrl)
-    .filter('featuredItemAccessoriesFilter', featuredItemAccessoriesFilter)
+angular.module('OrderCloud-FeaturedItemsHats')
+    .directive('featureditemshats', featureditemshats)
+    .controller('FeaturedItemsHatsCtrl', FeaturedItemsHatsCtrl)
+    .filter('featuredItemHatsFilter', featuredItemHatsFilter)
 ;
 
-function featureditemsaccessories() {
+function featureditemshats() {
     var directive =  {
         restrict: 'E',
         template: template,
-        controller: FeaturedItemsAccessoriesCtrl
+        controller: FeaturedItemsHatsCtrl
     };
     return directive;
 
@@ -24,13 +24,13 @@ function featureditemsaccessories() {
             '.featured-items li a:hover { text-decoration:none }',
             '@media (max-width: 768px) { .featured-items li { width:100%; float:none; text-align:center; padding:15px 0; } } ',
             '</style>',
-            '<div class="panel panel-default accessories">',
+            '<div class="panel panel-default blue-header">',
             '<div class="panel-heading">',
-            '<h3 class="panel-title">Accessories</h3>',
+            '<h3 class="panel-title">Hats</h3>',
             '</div>',
             '<div class="panel-body">',
             '<ul class="featured-items" ng-class="{\'active\': isActive(\'catalog\')}">',
-            '<li ng-class="col-xs-3" ng-repeat="featureditem in featureditemsAccessories">',
+            '<li ng-class="col-xs-3" ng-repeat="featureditem in featureditemsHats">',
             '<a class="text-center" href="{{featureditem.link}}"><img class="img-responsive" ng-src="{{featureditem.image}}" />',
             '<br /><span>{{featureditem.name}}</span>',
             '</a>',
@@ -38,22 +38,22 @@ function featureditemsaccessories() {
             '</ul>',
             '</div>',
             '<div class="panel-footer text-right">',
-            '<a href="catalog/umuc-accessories">View More <i class="fa fa-chevron-right"></i></a>',
+            '<a href="catalog/umuc-hats">View More <i class="fa fa-chevron-right"></i></a>',
             '</div>',
             '</div>'
         ].join('');
     }
 }
 
-FeaturedItemsAccessoriesCtrl.$inject = ['$scope', '$filter', '$location'];
-function FeaturedItemsAccessoriesCtrl($scope, $filter, $location) {
+FeaturedItemsHatsCtrl.$inject = ['$scope', '$filter', '$location'];
+function FeaturedItemsHatsCtrl($scope, $filter, $location) {
 
-    $scope.featureditemsAccessories = [];
+    $scope.featureditemsHats = [];
     $scope.$watch('user.CustomFields', function(newVal){
         if (!newVal) return;
-        if ($scope.featureditemsAccessories) {
-            $scope.featureditemsAccessories = []; //reset the counter
-            $scope.featureditemsAccessories = $scope.featureditemsAccessories.concat($filter('featuredItemAccessoriesFilter')($scope.user.CustomFields, 'featuredItemAccessories'));
+        if ($scope.featureditemsHats) {
+            $scope.featureditemsHats = []; //reset the counter
+            $scope.featureditemsHats = $scope.featureditemsHats.concat($filter('featuredItemHatsFilter')($scope.user.CustomFields, 'featuredItemHat'));
         }
     });
 
@@ -76,7 +76,7 @@ function FeaturedItemsAccessoriesCtrl($scope, $filter, $location) {
     };
 }
 
-function featuredItemAccessoriesFilter() {
+function featuredItemHatsFilter() {
     return function (fields, name) {
         var result = [];
         angular.forEach(fields, function(field) {

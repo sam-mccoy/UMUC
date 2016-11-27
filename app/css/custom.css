@@ -1,9 +1,8 @@
 /*
 Static file for Theme changes
 Theme name: proforma800.four51ordercloud.com/UMUC/
-Last Updated: 10/26/16
+Last Updated: 11/27/16
 Developers:
-
 Coverdale Group
 Jen Rasmussen
 
@@ -13,7 +12,6 @@ cobalt blue #0071cf [ umuc.edu #003366 rgb (0,51,102) ] - 11/17/15 Lets do the c
 turquoise blue #0798eb
 mustard yellow #ffb81d [ umuc.edu #daa81e rgb(218, 168, 30) ] - 11/17/15 should be #ffb81d for nav, btn Let?s do the yellow here rgb (255,184,29) #ffb81d
 red #ab192d [ umuc.edu #af0013 rgb (175,0,19) ] - 11/17/15 Let?s do the UMUC red here rgb (171,25,45) #ab192d
-
 Please make all the buttons on the User Information page #0071cf with a #0798eb hover.
 */
 
@@ -545,20 +543,20 @@ fixedfooter {
     color:#fff;
 }
 
-.featured-items-wrapper .panel-default.apparel .panel-title,
-.category-view .panel-default.apparel .panel-title {
+.featured-items-wrapper .panel-default.blue-header .panel-title,
+.category-view .panel-default.blue-header .panel-title {
     background-color:#1173CC;
 }
 
-.featured-items-wrapper .panel-default.drinkware .panel-title {
+.featured-items-wrapper .panel-default.red-header .panel-title {
     background-color:#AA1D30;
 }
 
-.featured-items-wrapper .panel-default.bags .panel-title {
+.featured-items-wrapper .panel-default.gold-header .panel-title {
     background-color:#A0911E;
 }
 
-.featured-items-wrapper .panel-default.accessories .panel-title {
+.featured-items-wrapper .panel-default.navy-header .panel-title {
     background-color:#021F3F;
 }
 
