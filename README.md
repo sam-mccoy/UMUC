@@ -18,7 +18,14 @@ Custom Site build for UMUC (University of Maryland).  Details of customizations 
 
 ========
 
+**_IMPORTANT_**
+* The css/bootstrap-451.css files should not be overwritten. Custom Changes should go in the css/custom.css file only.
+
+========
+
 ### OrderCloud Custom Solutions
+**_IMPORTANT_**
+* You must be logged in to your GitHub account to access the following URLs.
 
 ###### Bootstrap Carousel
 `lib/oc/carousel.js`
