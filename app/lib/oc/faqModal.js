@@ -66,7 +66,7 @@ function FAQModalCtrl($scope, $modal) {
                 '</li>',
                 '<li><span>Where can I purchase a frame for my diploma or a UMUC class ring?</span><br />',
                 'Diploma frames aswell as UMUC class rings are available for purchase through Oak Hall and Balfour website:',
-                '<a target="_blank" href="www.oakhalli.com/college/UMUC/">www.oakhalli.com/college/UMUC/</a>.',
+                '<a target="_blank" href="www.oakhalli.com/college/UMUC/">www.oakhalli.com/college/UMUC/</a>',
                 '</li>',
                 '<li><span>Can I pay with a personal check?</span><br />',
                 'To ensure fast and secure transactions, we can only accept payments by credit card.',
