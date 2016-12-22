@@ -5,7 +5,7 @@
 <customcarouselhats ng-if="isActive('catalog/umuc-hats')"></customcarouselhats>
 <section class="category-view">
     <div class="row">
-        <aside class="col-md-3 visible-md visible-lg">
+        <aside ng-if="!isActive('catalog')" class="col-md-3 visible-md visible-lg">
             <div class="panel panel-default panel-nav">
                 <nav class="nav 451qa_sidenav panel-body">
                     <ul>
@@ -14,7 +14,7 @@
                 </nav>
             </div>
         </aside>
-        <div class="col-md-9">
+        <div ng-class="{ 'col-md-9': !isActive('catalog'), 'col-md-12': isActive('catalog') }">
 
             <div class="featured-items-wrapper" ng-show="isActive('catalog/umuc-apparel')">
                 <featureditemspants></featureditemspants>
