@@ -416,6 +416,10 @@ ul.dropdown-menu a span:hover,
     max-height: 185px;
 }
 
+.panel-category-list .quantity{
+    min-height:20px
+}
+
 @media (max-width: 992px) {
     .panel-category-list ul li a img {
         margin: 0 auto;
@@ -425,7 +429,7 @@ ul.dropdown-menu a span:hover,
 }
 
 .panel-product-list ul li.inline h3 {
-    min-height: 120px;
+    min-height: 130px;
 }
 
 @media (max-width: 767px) {
