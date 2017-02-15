@@ -37,6 +37,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     padding-left:0;
 }
 
+.container, .container-view {
+
+    padding-left:0;
+}
+
+.fixed-footer-bottom div {
+    padding:4px;
+}
+
 @media (min-width: 0px) {
     .main-wrapper {
         max-width: 1202px; /* change to max-width:  1202px for large desktop */
@@ -582,3 +591,6 @@ fixedfooter {
 .panel-category-list ul li .well {
     min-height: 100%;
 }
+
+.well  {
+    min-height: 500px;
